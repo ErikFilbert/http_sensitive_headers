@@ -9,6 +9,7 @@ int _nextServiceId = 1;
 // TODO(ajohnsen): Use other way of getting a unique id.
 abstract class _ServiceObject {
   int __serviceId = 0;
+
   int get _serviceId {
     if (__serviceId == 0) __serviceId = _nextServiceId++;
     return __serviceId;
@@ -183,8 +184,11 @@ abstract class _HttpInboundMessageListInt extends Stream<List<int>> {
   List<Cookie> get cookies => _cookies ??= headers._parseCookies();
 
   _HttpHeaders get headers => _incoming.headers;
+
   String get protocolVersion => headers.protocolVersion;
+
   int get contentLength => headers.contentLength;
+
   bool get persistentConnection => headers.persistentConnection;
 }
 
@@ -197,8 +201,11 @@ abstract class _HttpInboundMessage extends Stream<Uint8List> {
   List<Cookie> get cookies => _cookies ??= headers._parseCookies();
 
   _HttpHeaders get headers => _incoming.headers;
+
   String get protocolVersion => headers.protocolVersion;
+
   int get contentLength => headers.contentLength;
+
   bool get persistentConnection => headers.persistentConnection;
 }
 
@@ -325,6 +332,7 @@ class _HttpClientResponse extends _HttpInboundMessageListInt
   }
 
   int get statusCode => _incoming.statusCode!;
+
   String get reasonPhrase => _incoming.reasonPhrase!;
 
   X509Certificate? get certificate {
@@ -754,6 +762,7 @@ class _IOSinkImpl extends _StreamSinkImpl<List<int>> implements IOSink {
   bool _encodingMutable = true;
 
   final TimelineTask? _timeline;
+
   _IOSinkImpl(StreamConsumer<List<int>> target, this._encoding, this._timeline)
       : super(target);
 
@@ -829,16 +838,19 @@ abstract class _HttpOutboundMessage<T> extends _IOSinkImpl {
   }
 
   int get contentLength => headers.contentLength;
+
   void set contentLength(int contentLength) {
     headers.contentLength = contentLength;
   }
 
   bool get persistentConnection => headers.persistentConnection;
+
   void set persistentConnection(bool p) {
     headers.persistentConnection = p;
   }
 
   bool get bufferOutput => _bufferOutput;
+
   void set bufferOutput(bool bufferOutput) {
     if (_outgoing.headersWritten) throw new StateError("Header already sent");
     _bufferOutput = bufferOutput;
@@ -914,12 +926,14 @@ class _HttpResponse extends _HttpOutboundMessage<HttpResponse>
   List<Cookie> get cookies => _cookies ??= <Cookie>[];
 
   int get statusCode => _statusCode;
+
   void set statusCode(int statusCode) {
     if (_outgoing.headersWritten) throw new StateError("Header already sent");
     _statusCode = statusCode;
   }
 
   String get reasonPhrase => _findReasonPhrase(statusCode);
+
   void set reasonPhrase(String reasonPhrase) {
     if (_outgoing.headersWritten) throw new StateError("Header already sent");
     _reasonPhrase = reasonPhrase;
@@ -1228,12 +1242,14 @@ class _HttpClientRequest extends _HttpOutboundMessage<HttpClientResponse>
   }
 
   int get maxRedirects => _maxRedirects;
+
   void set maxRedirects(int maxRedirects) {
     if (_outgoing.headersWritten) throw new StateError("Request already sent");
     _maxRedirects = maxRedirects;
   }
 
   bool get followRedirects => _followRedirects;
+
   void set followRedirects(bool followRedirects) {
     if (_outgoing.headersWritten) throw new StateError("Request already sent");
     _followRedirects = followRedirects;
@@ -1378,6 +1394,7 @@ class _HttpClientRequest extends _HttpOutboundMessage<HttpClientResponse>
 // compression.
 class _HttpGZipSink extends ByteConversionSink {
   final _BytesConsumer _consume;
+
   _HttpGZipSink(this._consume);
 
   void add(List<int> chunk) {
@@ -1442,6 +1459,7 @@ class _HttpOutgoing implements StreamConsumer<List<int>> {
 
   bool _gzip = false;
   ByteConversionSink? _gzipSink;
+
   // _gzipAdd is set iff the sink is being added to. It's used to specify where
   // gzipped data should be taken (sometimes a controller, sometimes a socket).
   _BytesConsumer? _gzipAdd;
@@ -2794,11 +2812,15 @@ class _HttpConnection extends LinkedListEntry<_HttpConnection>
   HttpConnectionInfo? get connectionInfo => _HttpConnectionInfo.create(_socket);
 
   bool get _isActive => _state == _ACTIVE;
+
   bool get _isIdle => _state == _IDLE;
+
   bool get _isClosing => _state == _CLOSING;
+
   bool get _isDetached => _state == _DETACHED;
 
   String get _serviceTypePath => 'io/http/serverconnections';
+
   String get _serviceTypeName => 'HttpServerConnection';
 
   Map _toJSON(bool ref) {
@@ -3045,6 +3067,7 @@ class _HttpServer extends Stream<HttpRequest>
   }
 
   String get _serviceTypePath => 'io/http/servers';
+
   String get _serviceTypeName => 'HttpServer';
 
   Map<String, dynamic> _toJSON(bool ref) {
@@ -3166,6 +3189,7 @@ class _Proxy {
 
   const _Proxy(String this.host, int this.port, this.username, this.password)
       : isDirect = false;
+
   const _Proxy.direct()
       : host = null,
         port = null,
@@ -3382,7 +3406,9 @@ class _ProxyCredentials extends _Credentials {
 
 abstract class _HttpClientCredentials implements HttpClientCredentials {
   _AuthenticationScheme get scheme;
+
   void authorize(_Credentials credentials, _HttpClientRequest request);
+
   void authorizeProxy(_ProxyCredentials credentials, HttpClientRequest request);
 }
 
@@ -3496,6 +3522,7 @@ class _RedirectInfo implements RedirectInfo {
   final int statusCode;
   final String method;
   final Uri location;
+
   const _RedirectInfo(this.statusCode, this.method, this.location);
 }
 

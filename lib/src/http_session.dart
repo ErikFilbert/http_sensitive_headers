@@ -15,6 +15,7 @@ class _HttpSession implements HttpSession {
   DateTime _lastSeen;
   Function? _timeoutCallback;
   _HttpSessionManager _sessionManager;
+
   // Pointers in timeout queue.
   _HttpSession? _prev;
   _HttpSession? _next;
@@ -48,15 +49,21 @@ class _HttpSession implements HttpSession {
 
   // Map implementation:
   bool containsValue(value) => _data.containsValue(value);
+
   bool containsKey(key) => _data.containsKey(key);
+
   operator [](key) => _data[key];
+
   void operator []=(key, value) {
     _data[key] = value;
   }
 
   putIfAbsent(key, ifAbsent) => _data.putIfAbsent(key, ifAbsent);
+
   addAll(Map other) => _data.addAll(other);
+
   remove(key) => _data.remove(key);
+
   void clear() {
     _data.clear();
   }
@@ -79,6 +86,7 @@ class _HttpSession implements HttpSession {
   }
 
   Map<K, V> cast<K, V>() => _data.cast<K, V>();
+
   update(key, update(value), {ifAbsent()?}) =>
       _data.update(key, update, ifAbsent: ifAbsent);
 
@@ -87,9 +95,13 @@ class _HttpSession implements HttpSession {
   }
 
   Iterable get keys => _data.keys;
+
   Iterable get values => _data.values;
+
   int get length => _data.length;
+
   bool get isEmpty => _data.isEmpty;
+
   bool get isNotEmpty => _data.isNotEmpty;
 
   String toString() => 'HttpSession id:$id $_data';

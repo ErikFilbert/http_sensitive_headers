@@ -6,6 +6,7 @@ part of dart._http;
 
 class _HttpHeaders implements HttpHeaders {
   final Map<String, List<String>> _headers;
+
   // The original header names keyed by the lowercase header names.
   Map<String, String>? _originalHeaderNames;
   final String protocolVersion;
@@ -924,6 +925,7 @@ class _Cookie implements Cookie {
         httpOnly = true;
 
   String get name => _name;
+
   String get value => _value;
 
   String? get path => _path;

@@ -228,6 +228,7 @@ abstract class _HashBase {
 
   // Helper methods.
   _add32(x, y) => (x + y) & _MASK_32;
+
   _roundUp(val, n) => (val + n - 1) & -n;
 
   // Rotate left limiting to unsigned 32-bit values.

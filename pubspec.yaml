@@ -1,8 +1,7 @@
 name: http_sensitive_headers
-description: Http case sensitive headers
-version: 0.0.1
-author:
-homepage:
+description: This is a HttpClient Adapter library to allow case sensitive headers
+version: 0.0.2
+homepage: https://github.com/ravitejaavv/http_sensitive_headers
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

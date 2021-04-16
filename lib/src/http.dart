@@ -7,26 +7,33 @@ library dart._http;
 import 'dart:async';
 import 'dart:collection'
     show
-    HashMap,
-    HashSet,
-    Queue,
-    ListQueue,
-    LinkedList,
-    LinkedListEntry,
-    UnmodifiableMapView;
+        HashMap,
+        HashSet,
+        Queue,
+        ListQueue,
+        LinkedList,
+        LinkedListEntry,
+        UnmodifiableMapView;
 import 'dart:convert';
 import 'dart:developer' hide log;
+
 //import 'internal.dart' show Since, HttpStatus; //MODIFIED
 import 'dart:math';
 import 'dart:io';
 import 'dart:typed_data';
 
 part 'crypto.dart';
+
 part 'http_date.dart';
+
 part 'http_headers.dart';
+
 part 'http_impl.dart';
+
 part 'http_parser.dart';
+
 part 'http_session.dart';
+
 //part 'overrides.dart'; //MODIFIED
 //part 'websocket.dart'; //MODIFIED
 //part 'websocket_impl.dart'; //MODIFIED

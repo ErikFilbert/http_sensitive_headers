@@ -8,15 +8,19 @@ part of dart._http;
 class _Const {
   // Bytes for "HTTP".
   static const HTTP = const [72, 84, 84, 80];
+
   // Bytes for "HTTP/1.".
   static const HTTP1DOT = const [72, 84, 84, 80, 47, 49, 46];
+
   // Bytes for "HTTP/1.0".
   static const HTTP10 = const [72, 84, 84, 80, 47, 49, 46, 48];
+
   // Bytes for "HTTP/1.1".
   static const HTTP11 = const [72, 84, 84, 80, 47, 49, 46, 49];
 
   static const bool T = true;
   static const bool F = false;
+
   // Loopup-map for the following characters: '()<>@,;:\\"/[]?={} \t'.
   static const SEPARATOR_MAP = const [
     F, F, F, F, F, F, F, F, F, T, F, F, F, F, F, F, F, F, F, F, F, F, F, F, //
@@ -922,8 +926,11 @@ class _HttpParser extends Stream<_HttpIncoming> {
   }
 
   int get messageType => _messageType;
+
   int get transferLength => _transferLength;
+
   bool get upgrade => _connectionUpgrade && _state == _State.UPGRADED;
+
   bool get persistentConnection => _persistentConnection;
 
   void set isHead(bool value) {
