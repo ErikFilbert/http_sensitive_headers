@@ -171,7 +171,7 @@ class _HttpHeaders implements HttpHeaders {
     _contentLength = contentLength;
     if (_contentLength >= 0) {
       if (chunkedTransferEncoding) chunkedTransferEncoding = false;
-      _set(HttpHeaders.contentLengthHeader, contentLength.toString());
+      _set('Content-Length', contentLength.toString());
     } else {
       _headers.remove(HttpHeaders.contentLengthHeader);
       if (protocolVersion == "1.1") {
