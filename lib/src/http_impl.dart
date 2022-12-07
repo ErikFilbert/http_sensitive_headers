@@ -2306,6 +2306,12 @@ class _HttpClient implements HttpClient {
   Duration _idleTimeout = const Duration(seconds: 15);
   BadCertificateCallback? _badCertificateCallback;
 
+  void set keyLog(Function(String line)? callback) => (super.noSuchMethod(Invocation.setter(#keylog, callback)));
+  void set connectionFactory(
+      Future<ConnectionTask<Socket>> Function(
+              Uri url, String? proxyHost, int? proxyPort)?
+          f) => (super.noSuchMethod(Invocation.setter(#connectionFactory, f)));
+
   Duration get idleTimeout => _idleTimeout;
 
   Duration? connectionTimeout;
